@@ -13,6 +13,11 @@ span.wikiextras.phrase.fixme { background-color: #b22222; }
 
 span.wikiextras.phrase.todo { background-color: #000; }
 
+span.wikiextras.phrase.lgtm {
+    border: 1px solid #3333FF;
+    color: #3333FF;
+}
+
 span.wikiextras.phrase.done {
     border: 1px solid #005200;
     color: #005200;

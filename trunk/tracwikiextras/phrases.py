@@ -62,6 +62,10 @@ class Phrases(Component):
                               doc="Analogous to `FIXME`-phrases, but "
                                   "presentation is less eye-catching.")
 
+    lgtm_phrases = ListOption('wikiextras', 'lgtm_phrases', 'LGTM, NIT',
+                              doc="Analogous to `LGTM`-phrases, but "
+                                  "presentation is less eye-catching.")
+
     done_phrases = ListOption('wikiextras', 'done_phrases',
                               'DONE, DEBUGGED, FIXED, REVIEWED',
                               doc="Analogous to `FIXME`-phrases, but "
@@ -73,6 +77,7 @@ class Phrases(Component):
         html_form = '<span class="wikiextras phrase %s">%s</span>'
         for (style, phrases) in [('fixme', self.fixme_phrases), 
                                  ('todo', self.todo_phrases),
+                                 ('lgtm', self.lgtm_phrases),
                                  ('done', self.done_phrases)]:
             for phrase in phrases:
                 html = html_form % (style, phrase)
@@ -134,12 +139,13 @@ class Phrases(Component):
         t = [render_table(p, '1',
                           lambda s: self._format_phrase(formatter, s, None))
              for p in [self.fixme_phrases, self.todo_phrases,
-                       self.done_phrases]]
+                       self.lgtm_phrases, self.done_phrases]]
         style = 'border:none;text-align:center;vertical-align:top'
         spacer = tag.td(style='width:2em;border:none')
         return tag.table(tag.tr(tag.td(t[0], style=style), spacer,
                                 tag.td(t[1], style=style), spacer,
-                                tag.td(t[2], style=style)))
+                                tag.td(t[2], style=style), spacer,
+                                tag.td(t[3], style=style)))
 
 
 class AboutWikiPhrases(Component):
